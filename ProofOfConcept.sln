@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{B827CECF-EA8D-46FE-BB6E-0344307B7746}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{1FD8FE94-BFD3-42D8-AA15-E354A4E9CE87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DuendeIdentityServer", "DuendeIdentityServer\DuendeIdentityServer.csproj", "{708F6FCA-F707-4742-AD4C-DBE3AEB13CC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders", "Orders\Orders.csproj", "{BB1F14D5-B117-45FD-B641-94EB681A1977}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FD8FE94-BFD3-42D8-AA15-E354A4E9CE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD8FE94-BFD3-42D8-AA15-E354A4E9CE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD8FE94-BFD3-42D8-AA15-E354A4E9CE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD8FE94-BFD3-42D8-AA15-E354A4E9CE87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708F6FCA-F707-4742-AD4C-DBE3AEB13CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708F6FCA-F707-4742-AD4C-DBE3AEB13CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708F6FCA-F707-4742-AD4C-DBE3AEB13CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708F6FCA-F707-4742-AD4C-DBE3AEB13CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB1F14D5-B117-45FD-B641-94EB681A1977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1F14D5-B117-45FD-B641-94EB681A1977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1F14D5-B117-45FD-B641-94EB681A1977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1F14D5-B117-45FD-B641-94EB681A1977}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BB1F14D5-B117-45FD-B641-94EB681A1977} = {B827CECF-EA8D-46FE-BB6E-0344307B7746}
+	EndGlobalSection
+EndGlobal
