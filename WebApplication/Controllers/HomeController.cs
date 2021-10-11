@@ -44,7 +44,7 @@ namespace WebApplication.Controllers
             var client = _httpClientFactory.CreateClient("client");
             try
             {
-                var content = await client.GetFromJsonAsync<dynamic>(new Uri("api/v1/WeatherForecast", UriKind.Relative));
+                var content = await client.GetFromJsonAsync<dynamic>(new Uri("api/v1/orders", UriKind.Relative));
                 ViewBag.Json = content;
             }
             catch (Exception e)

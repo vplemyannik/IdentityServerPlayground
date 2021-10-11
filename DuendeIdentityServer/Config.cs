@@ -20,14 +20,15 @@ namespace DuendeIdentityServer
         public static IEnumerable<ApiResource> ApiResources =>
             new[]
             {
-                new ApiResource("interactive", "Mvc Client", new []{ JwtClaimTypes.Name })
+                new ApiResource("MvcClient", "Mvc Client", new []{ JwtClaimTypes.Name }),
+                new ApiResource("Orders", "Orders", new []{ JwtClaimTypes.Name }),
+                new ApiResource("Products", "Products", new []{ JwtClaimTypes.Name }),
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("api.Orders"),
-                new ApiScope("scope2"),
+                new ApiScope("api"),
             };
 
         public static IEnumerable<Client> Clients =>
@@ -36,20 +37,20 @@ namespace DuendeIdentityServer
                 // m2m client credentials flow client
                 new Client
                 {
-                    ClientId = "m2m.client",
-                    ClientName = "Client Credentials Client",
+                    ClientId = "orders.client",
+                    ClientName = "Orders Client",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    ClientSecrets = { new Secret("orders.secret".Sha256()) },
 
-                    AllowedScopes = { "scope1" }
+                    AllowedScopes = { "api" },
                 },
 
-                // interactive client using code flow + pkce
+                // mvc.client client using code flow + pkce
                 new Client
                 {
-                    ClientId = "interactive",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
+                    ClientId = "mvc.client",
+                    ClientSecrets = { new Secret("mvc.secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.Code,
                     
@@ -60,9 +61,7 @@ namespace DuendeIdentityServer
                     PostLogoutRedirectUris = { "https://localhost:5001/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api.Orders", "offline_access" },
-                    
-                    AccessTokenLifetime = 5
+                    AllowedScopes = { "openid", "profile", "api", "offline_access" },
                 },
             };
     }

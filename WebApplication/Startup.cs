@@ -41,8 +41,8 @@ namespace WebApplication
                 {
                     options.Authority = "https://localhost:5000";
 
-                    options.ClientId = "interactive";
-                    options.ClientSecret = "secret";
+                    options.ClientId = "mvc.client";
+                    options.ClientSecret = "mvc.secret";
                     options.ResponseType = "code";
 
                     options.SaveTokens = true;
@@ -51,7 +51,7 @@ namespace WebApplication
                     
                     options.Scope.Add("profile");
                     options.Scope.Add("offline_access");
-                    options.Scope.Add("api.Orders");
+                    options.Scope.Add("api");
                 });
             
             
