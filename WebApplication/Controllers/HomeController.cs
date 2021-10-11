@@ -42,9 +42,16 @@ namespace WebApplication.Controllers
         public async Task<IActionResult> CallApi()
         {
             var client = _httpClientFactory.CreateClient("client");
-            var content = await client.GetFromJsonAsync<dynamic>(new Uri("api/v1/WeatherForecast", UriKind.Relative));
-
-            ViewBag.Json = content;
+            try
+            {
+                var content = await client.GetFromJsonAsync<dynamic>(new Uri("api/v1/WeatherForecast", UriKind.Relative));
+                ViewBag.Json = content;
+            }
+            catch (Exception e)
+            {
+                ViewBag.Json = e.Message;
+            }
+            
             return View();
         }
 

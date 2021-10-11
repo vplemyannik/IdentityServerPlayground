@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using Duende.IdentityServer.Models;
+using IdentityModel;
 
 namespace DuendeIdentityServer
 {
@@ -14,6 +15,12 @@ namespace DuendeIdentityServer
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+            };
+
+        public static IEnumerable<ApiResource> ApiResources =>
+            new[]
+            {
+                new ApiResource("interactive", "Mvc Client", new []{ JwtClaimTypes.Name })
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -53,7 +60,9 @@ namespace DuendeIdentityServer
                     PostLogoutRedirectUris = { "https://localhost:5001/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AllowedScopes = { "openid", "profile", "api.Orders", "offline_access" }
+                    AllowedScopes = { "openid", "profile", "api.Orders", "offline_access" },
+                    
+                    AccessTokenLifetime = 5
                 },
             };
     }

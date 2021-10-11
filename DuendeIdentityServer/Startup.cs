@@ -3,6 +3,7 @@
 
 
 using Duende.IdentityServer;
+using Duende.IdentityServer.Services;
 using DuendeIdentityServer.Quickstart;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,9 @@ namespace DuendeIdentityServer
             builder.AddInMemoryIdentityResources(Config.IdentityResources);
             builder.AddInMemoryApiScopes(Config.ApiScopes);
             builder.AddInMemoryClients(Config.Clients);
+            builder.AddInMemoryApiResources(Config.ApiResources);
+
+            services.AddSingleton<IProfileService, ProfileService>();
 
             services.AddAuthentication()
                 .AddGoogle(options =>

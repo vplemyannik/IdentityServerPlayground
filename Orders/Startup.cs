@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Orders.Middlewares;
 using Serilog;
@@ -31,23 +33,16 @@ namespace Orders
                 conf.AddConsole();
             });
             
-            services.AddAuthentication(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, config =>
                 {
-                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    // base-address of your identityserver
-                    options.Authority = "https://localhost:5000";
-
-                    // audience is optional, make sure you read the following paragraphs
-                    // to understand your options
-                    options.TokenValidationParameters.ValidateAudience = false;
-
-                    // it's recommended to check the type header to avoid "JWT confusion" attacks
-                    options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+                    config.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ClockSkew = TimeSpan.FromSeconds(5),
+                        ValidateAudience = false
+                    };
+                    
+                    config.Authority = "https://localhost:5000";
                 });
 
             services.AddSwaggerGen(c =>
@@ -88,7 +83,7 @@ namespace Orders
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
