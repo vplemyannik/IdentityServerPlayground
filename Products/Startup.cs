@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Orders.Middlewares;
+using Products.Controllers;
+using ProductService;
 using Serilog;
 
 namespace Products
@@ -31,8 +33,8 @@ namespace Products
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
 
+            services.AddGrpc();
             services.AddLogging(conf =>
             {
                 conf.AddConsole();
@@ -80,6 +82,7 @@ namespace Products
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGrpcService<GreetingService>();
             });
         }
     }

@@ -17,14 +17,6 @@ namespace DuendeIdentityServer
                 new IdentityResources.Profile(),
             };
 
-        public static IEnumerable<ApiResource> ApiResources =>
-            new[]
-            {
-                new ApiResource("MvcClient", "Mvc Client", new []{ JwtClaimTypes.Name }),
-                new ApiResource("Orders", "Orders", new []{ JwtClaimTypes.Name }),
-                new ApiResource("Products", "Products", new []{ JwtClaimTypes.Name }),
-            };
-
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
@@ -50,6 +42,7 @@ namespace DuendeIdentityServer
                 new Client
                 {
                     ClientId = "mvc.client",
+                    ClientName = "MvcClient",
                     ClientSecrets = { new Secret("mvc.secret".Sha256()) },
 
                     AllowedGrantTypes = GrantTypes.Code,
@@ -59,6 +52,24 @@ namespace DuendeIdentityServer
                     RedirectUris = { "https://localhost:5001/signin-oidc" },
                     FrontChannelLogoutUri = "https://localhost:5001/signout-oidc",
                     PostLogoutRedirectUris = { "https://localhost:5001/signout-callback-oidc" },
+
+                    AllowOfflineAccess = true,
+                    AllowedScopes = { "openid", "profile", "api", "offline_access" },
+                },
+                new Client
+                {
+                    ClientId = "spa",
+                    ClientName = "Spa",
+                    ClientSecrets = { new Secret("spa.secret".Sha256()) },
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    
+                    RequirePkce = true,
+                    AccessTokenLifetime = 10,
+
+                    RedirectUris = { "https://localhost:7000/signin-oidc" },
+                    FrontChannelLogoutUri = "https://localhost:7000/signout-oidc",
+                    PostLogoutRedirectUris = { "https://localhost:7000/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api", "offline_access" },

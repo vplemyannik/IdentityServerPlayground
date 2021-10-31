@@ -51,6 +51,7 @@ namespace DuendeIdentityServer.Quickstart
                         Claims =
                         {
                             new Claim(JwtClaimTypes.Name, "Bob Smith"),
+                            new Claim("company_id", "trg"),
                             new Claim(JwtClaimTypes.GivenName, "Bob"),
                             new Claim(JwtClaimTypes.FamilyName, "Smith"),
                             new Claim(JwtClaimTypes.Email, "BobSmith@email.com"),

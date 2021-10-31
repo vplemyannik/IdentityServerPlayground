@@ -1,4 +1,7 @@
 using System;
+using System.Threading.Tasks;
+using Grpc.Core;
+using IdentityModel.AspNetCore.AccessTokenManagement;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Orders.Middlewares;
+using ProductService;
 using Serilog;
 
 namespace Orders
@@ -65,7 +69,7 @@ namespace Orders
             
             services.AddAccessTokenManagement(options =>
                 {
-                    options.Client.Clients.Add("client", new ClientCredentialsTokenRequest
+                    options.Client.Clients.Add("tokenClient", new ClientCredentialsTokenRequest
                     {
                         Address = "https://localhost:5000/connect/token",
                         ClientId = "orders.client",
@@ -80,6 +84,12 @@ namespace Orders
             {
                 client.BaseAddress = new Uri("https://localhost:5003");
             });
+
+            services.AddGrpcClient<Greeter.GreeterClient>(o =>
+                {
+                    o.Address = new Uri("https://localhost:5003");
+                    
+                }).AddHttpMessageHandler<ClientAccessTokenHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
