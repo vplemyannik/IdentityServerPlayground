@@ -24,11 +24,7 @@ export class NavMenu extends Component {
 
     async logout(user) {
         const url = user.filter(x => x.type === 'bff:logout_url')[0]
-        await fetch(url.value, {
-            headers: {
-                'x-csrf': '1'
-            },
-        })
+        window.location = url.value
     }
 
     render() {

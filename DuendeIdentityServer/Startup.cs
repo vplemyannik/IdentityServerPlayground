@@ -46,8 +46,6 @@ namespace DuendeIdentityServer
             builder.AddInMemoryClients(Config.Clients);
 
             // services.AddSingleton<IProfileService, ProfileService>();
-
-            services.AddAuthentication();
         }
 
         public void Configure(IApplicationBuilder app)

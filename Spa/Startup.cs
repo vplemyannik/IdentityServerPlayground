@@ -34,6 +34,7 @@ namespace Spa
                 {
                     options.DefaultScheme = "Cookies";
                     options.DefaultChallengeScheme = "oidc";
+                    options.DefaultSignOutScheme = "oidc";
                 })
                 .AddCookie("Cookies", options =>
                 {
@@ -42,6 +43,10 @@ namespace Spa
 
                     // strict SameSite handling
                     options.Cookie.SameSite = SameSiteMode.Strict;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+    
+                    // sliding or absolute
+                    options.SlidingExpiration = true;
                 })
                 .AddOpenIdConnect("oidc", options =>
                 {
