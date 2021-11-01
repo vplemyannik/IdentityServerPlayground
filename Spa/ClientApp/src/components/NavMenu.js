@@ -58,6 +58,9 @@ export class NavMenu extends Component {
                                                 <NavLink tag={Link} className="text-dark" to="/fetch-data-grpc">Fetch data GRPC</NavLink>
                                             </NavItem>
                                             <NavItem>
+                                                <NavLink tag={Link} className="text-dark" to="/GraphQL">GraphQL</NavLink>
+                                            </NavItem>
+                                            <NavItem>
                                                 <div className="text-dark" onClick={() => this.logout(user)}>Logout</div>
                                             </NavItem>
                                         </ul>

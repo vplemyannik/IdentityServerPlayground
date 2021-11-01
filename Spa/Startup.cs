@@ -95,7 +95,7 @@ namespace Spa
             app.UseAuthentication();
             app.UseBff();
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapBffManagementEndpoints();
@@ -104,6 +104,8 @@ namespace Spa
                         "/orders-module", "https://localhost:5002", requireAntiForgeryCheck: false)
                     .RequireAccessToken();
             });
+            
+            app.UseWebSockets();
 
             app.UseSpa(spa =>
             {

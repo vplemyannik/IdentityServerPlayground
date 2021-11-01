@@ -8,6 +8,7 @@ import {Counter} from './components/Counter';
 import './custom.css'
 import {AuthContextProvider} from "./Auth/AuthProvider";
 import {FetchDataGrpc} from "./components/FetchDataGrpc";
+import {GraphQL} from "./components/GraphQL";
 
 
 export default class App extends Component {
@@ -21,6 +22,7 @@ export default class App extends Component {
                     <Route path='/counter' component={Counter}/>
                     <Route path='/fetch-data' component={FetchData}/>
                     <Route path='/fetch-data-grpc' component={FetchDataGrpc}/>
+                    <Route path='/GraphQL' component={GraphQL}/>
                 </Layout>
             </AuthContextProvider>
         );

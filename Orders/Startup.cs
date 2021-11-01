@@ -90,6 +90,14 @@ namespace Orders
                     o.Address = new Uri("https://localhost:5003");
                     
                 }).AddHttpMessageHandler<ClientAccessTokenHandler>();
+
+
+            services.AddGraphQLServer()
+                .AddQueryType<GraphQL.Query>()
+                .AddMutationType<GraphQL.Mutation>()
+                .AddSubscriptionType<GraphQL.Subscription>();
+            
+            services.AddInMemorySubscriptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -116,10 +124,13 @@ namespace Orders
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGraphQL();
             });
         }
     }

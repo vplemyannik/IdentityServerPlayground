@@ -65,7 +65,6 @@ namespace DuendeIdentityServer
                     AllowedGrantTypes = GrantTypes.Code,
                     
                     RequirePkce = true,
-                    AccessTokenLifetime = 10,
 
                     RedirectUris = { "https://localhost:7000/signin-oidc" },
                     FrontChannelLogoutUri = "https://localhost:7000/signout-oidc",
