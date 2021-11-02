@@ -46,6 +46,17 @@ namespace DuendeIdentityServer
             builder.AddInMemoryClients(Config.Clients);
 
             // services.AddSingleton<IProfileService, ProfileService>();
+            
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("https://localhost:8000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -58,6 +69,8 @@ namespace DuendeIdentityServer
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseCors("default");
 
             app.UseIdentityServer();
             app.UseAuthorization();

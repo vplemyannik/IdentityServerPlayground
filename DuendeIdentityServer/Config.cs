@@ -3,6 +3,7 @@
 
 
 using System.Collections.Generic;
+using Duende.IdentityServer;
 using Duende.IdentityServer.Models;
 using IdentityModel;
 
@@ -73,6 +74,27 @@ namespace DuendeIdentityServer
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api", "offline_access" },
                 },
+                new Client
+                {
+                    ClientId = "js",
+                    ClientName = "JavaScript Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequireClientSecret = false,
+    
+                    RedirectUris =           { "https://localhost:8000/callback.html" },
+                    PostLogoutRedirectUris = { "https://localhost:8000/index.html" },
+                    AllowedCorsOrigins =     { "https://localhost:8000" },
+                    
+                    AllowOfflineAccess = true,
+
+                    AllowedScopes = 
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api",
+                        "offline_access"
+                    }
+                }
             };
     }
 }
