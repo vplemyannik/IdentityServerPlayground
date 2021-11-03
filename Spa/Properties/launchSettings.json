@@ -3,7 +3,7 @@
     "Spa": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7000",
+      "applicationUrl": "http://localhost:7000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

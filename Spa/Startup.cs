@@ -50,13 +50,15 @@ namespace Spa
                 })
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:5000";
+                    options.Authority = "http://localhost:5000";
 
                     options.ClientId = "spa";
                     options.ClientSecret = "spa.secret";
                     options.ResponseType = "code";
 
                     options.ResponseMode = "query";
+
+                    options.RequireHttpsMetadata = false;
 
                     options.MapInboundClaims = false;
                     options.SaveTokens = true;
@@ -91,7 +93,7 @@ namespace Spa
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
@@ -106,7 +108,7 @@ namespace Spa
                 endpoints.MapBffManagementEndpoints();
 
                 endpoints.MapRemoteBffApiEndpoint(
-                        "/orders-module", "https://localhost:5002", requireAntiForgeryCheck: false)
+                        "/orders-module", "http://localhost:5002", requireAntiForgeryCheck: false)
                     .RequireAccessToken();
             });
             

@@ -52,7 +52,7 @@ namespace DuendeIdentityServer
                 // this defines a CORS policy called "default"
                 options.AddPolicy("default", policy =>
                 {
-                    policy.WithOrigins("https://localhost:8000")
+                    policy.WithOrigins("http://localhost:8000")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });

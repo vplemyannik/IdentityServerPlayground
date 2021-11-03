@@ -46,8 +46,10 @@ namespace Orders
                         ClockSkew = TimeSpan.FromSeconds(5),
                         ValidateAudience = false
                     };
+
+                    config.RequireHttpsMetadata = false;
                     
-                    config.Authority = "https://localhost:5000";
+                    config.Authority = "http://localhost:5000";
 
                     config.SaveToken = true;
                 });
@@ -71,7 +73,7 @@ namespace Orders
                 {
                     options.Client.Clients.Add("tokenClient", new ClientCredentialsTokenRequest
                     {
-                        Address = "https://localhost:5000/connect/token",
+                        Address = "http://localhost:5000/connect/token",
                         ClientId = "orders.client",
                         ClientSecret = "orders.secret",
                         Scope = "api" // optional
@@ -82,12 +84,12 @@ namespace Orders
             // token management - delegating handler 
             services.AddClientAccessTokenClient("client", configureClient: client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5003");
+                client.BaseAddress = new Uri("http://localhost:5003");
             });
 
             services.AddGrpcClient<Greeter.GreeterClient>(o =>
                 {
-                    o.Address = new Uri("https://localhost:5003");
+                    o.Address = new Uri("http://localhost:5003");
                     
                 }).AddHttpMessageHandler<ClientAccessTokenHandler>();
 
@@ -115,7 +117,7 @@ namespace Orders
                 });
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             
             app.UseSerilogRequestLogging();
             app.UseMiddleware<RequestLoggingMiddleware>();

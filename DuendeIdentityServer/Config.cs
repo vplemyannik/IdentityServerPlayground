@@ -50,9 +50,9 @@ namespace DuendeIdentityServer
                     
                     RequirePkce = true,
 
-                    RedirectUris = { "https://localhost:5001/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:5001/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:5001/signout-callback-oidc" },
+                    RedirectUris = { "http://localhost:5001/signin-oidc" },
+                    FrontChannelLogoutUri = "http://localhost:5001/signout-oidc",
+                    PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api", "offline_access" },
@@ -67,9 +67,9 @@ namespace DuendeIdentityServer
                     
                     RequirePkce = true,
 
-                    RedirectUris = { "https://localhost:7000/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:7000/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:7000/signout-callback-oidc" },
+                    RedirectUris = { "http://localhost:7000/signin-oidc" },
+                    FrontChannelLogoutUri = "http://localhost:7000/signout-oidc",
+                    PostLogoutRedirectUris = { "http://localhost:7000/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api", "offline_access" },
@@ -81,9 +81,9 @@ namespace DuendeIdentityServer
                     AllowedGrantTypes = GrantTypes.Code,
                     RequireClientSecret = false,
     
-                    RedirectUris =           { "https://localhost:8000/callback.html" },
-                    PostLogoutRedirectUris = { "https://localhost:8000/index.html" },
-                    AllowedCorsOrigins =     { "https://localhost:8000" },
+                    RedirectUris =           { "http://localhost:8000/callback.html" },
+                    PostLogoutRedirectUris = { "http://localhost:8000/index.html" },
+                    AllowedCorsOrigins =     { "http://localhost:8000" },
                     
                     AllowOfflineAccess = true,
 

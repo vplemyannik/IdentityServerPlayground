@@ -39,7 +39,7 @@ namespace WebApplication
                 .AddCookie("Cookies")
                 .AddOpenIdConnect("oidc", options =>
                 {
-                    options.Authority = "https://localhost:5000";
+                    options.Authority = "http://localhost:5000";
 
                     options.ClientId = "mvc.client";
                     options.ClientSecret = "mvc.secret";
@@ -61,7 +61,7 @@ namespace WebApplication
             // token management - delegating handler 
             services.AddUserAccessTokenClient("client", configureClient: client =>
             {
-                client.BaseAddress = new Uri("https://localhost:5002");
+                client.BaseAddress = new Uri("http://localhost:5002");
             });
         }
 
@@ -79,7 +79,7 @@ namespace WebApplication
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

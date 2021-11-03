@@ -49,7 +49,9 @@ namespace Products
                         ValidateAudience = false
                     };
                     
-                    config.Authority = "https://localhost:5000";
+                    config.RequireHttpsMetadata = false;
+                    
+                    config.Authority = "http://localhost:5000";
                 });
 
             
@@ -69,7 +71,7 @@ namespace Products
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Products v1"));
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             
             app.UseSerilogRequestLogging();
             app.UseMiddleware<RequestLoggingMiddleware>();
